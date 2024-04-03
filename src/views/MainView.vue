@@ -1,0 +1,95 @@
+<template>
+  <div v-if="this.$store.state.userListLoading">Данные загружаются...</div>
+  <div v-else-if="this.$store.state.userListLoadingFailed">Произошла ошибка</div>
+  <main v-else-if="users">
+    <section class="section-user">
+      <div class="user-container container">
+        <UsersPerPage :users-per-page.sync="usersPerPage" />
+
+        <BasePagination :page.sync="page" :count="countUsers" :per-page="usersPerPage" />
+
+        <TablePage :users="users" />
+
+        <BasePagination :page.sync="page" :count="countUsers" :per-page="usersPerPage" />
+      </div>
+    </section>
+  </main>
+</template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex';
+import TablePage from '@/components/TablePage.vue';
+import BasePagination from '@/components/BasePagination.vue';
+import UsersPerPage from '@/components/UsersPerPage.vue';
+
+export default {
+  data() {
+    return {
+      usersData: {},
+
+      page: 1,
+      usersPerPage: 10,
+    };
+  },
+  computed: {
+    ...mapGetters(['usersList']),
+
+    usersArray() {
+    // users() {
+      return this.usersList
+        ? this.usersList : [];
+    },
+    countUsers() {
+      if (!this.usersArray.length) {
+        return 0;
+      }
+      return this.usersArray.length;
+    },
+    users() {
+      if (!this.usersArray.length) {
+        return [];
+      }
+
+      const offset = (this.page - 1) * this.usersPerPage;
+
+      return this.usersArray.slice(offset, offset + this.usersPerPage);
+    },
+  },
+  methods: {
+    ...mapActions(['loadUsers', 'userLoad', 'loadPagination']),
+    // ...mapActions(['loadPagination']),
+
+    // loadUsersMain() {
+    //   this.loadUsers(100);
+    //   // this.loadPagination({
+    //   //   page: this.page,
+    //   //   perPage: this.usersPerPage,
+    //   // });
+    // },
+  },
+  watch: {
+    usersPerPage: {
+      handler() {
+        this.page = 1;
+        // this.loadUsersMain();
+      },
+      // immediate: true,
+    },
+    // page: {
+    //   handler() {
+    //     this.loadUsersMain();
+    //   },
+    //   // immediate: true,
+    // },
+  },
+  created() {
+    this.loadUsers(100);
+  },
+  components: {
+    TablePage, BasePagination, UsersPerPage,
+  },
+};
+
+</script>
+
+<style lang="scss"></style>
