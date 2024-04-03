@@ -1,6 +1,6 @@
 <template>
   <table class="table-user">
-    <caption>Список пользователей</caption>
+    <caption class="table-title">Список пользователей</caption>
     <thead class="table-user__header">
       <tr class="table-user__header-row">
         <th class="table-user__column" data-column="fio">ФИО пользователя</th>
@@ -15,12 +15,28 @@
   </table>
 </template>
 
+<script>
+import TableRow from './TableRow.vue';
+
+export default {
+  props: ['users'],
+  components: {
+    TableRow,
+  },
+};
+</script>
+
 <style lang="scss">
+.table-title {
+  margin-bottom: 15px;
+}
+
 .table-user {
   margin: 0 auto;
   border-collapse: collapse;
   caption-side: top;
   table-layout: fixed;
+  width: 100%;
 
   &__header {
     background-color: #cfe2ff;
@@ -33,14 +49,3 @@
   }
 }
 </style>
-
-<script>
-import TableRow from './TableRow.vue';
-
-export default {
-  props: ['users'],
-  components: {
-    TableRow,
-  },
-};
-</script>

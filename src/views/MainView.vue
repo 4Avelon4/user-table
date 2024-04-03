@@ -2,6 +2,7 @@
   <div v-if="this.$store.state.userListLoading">Данные загружаются...</div>
   <div v-else-if="this.$store.state.userListLoadingFailed">Произошла ошибка</div>
   <main v-else-if="users">
+    <h1 class="title">Таблица пользователей</h1>
     <section class="section-user">
       <div class="user-container container">
         <UsersPerPage :users-per-page.sync="usersPerPage" />
@@ -92,4 +93,14 @@ export default {
 
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 30px;
+}
+</style>

@@ -1,38 +1,31 @@
 <template>
-  <ul class="catalog__pagination pagination">
-    <li class="pagination__item">
-      <a class="pagination__link" href="#" aria-label="Предыдущая страница"
-        :class="{ 'pagination__link--disabled': page === 1 }" @click.prevent="pagePrev(page)">
-        Назад
-      </a>
-    </li>
-    <li
-      class="pagination__item"
-      v-for="pageNumber in pages"
-      :key="pageNumber"
-      :class="{
+  <div class="pagination__wrapper">
+    <ul class="catalog__pagination pagination">
+      <li class="pagination__item">
+        <a class="pagination__link" href="#" aria-label="Предыдущая страница"
+          :class="{ 'pagination__link--disabled': page === 1 }" @click.prevent="pagePrev(page)">
+          Назад
+        </a>
+      </li>
+      <li class="pagination__item" v-for="pageNumber in pages" :key="pageNumber" :class="{
         'pagination__item--hidden': pageHideClass(pageNumber),
         'pagination__item--prev': pagePrevClass(pageNumber),
         'pagination__item--next': pageNextClass(pageNumber),
-      }"
-      >
-      <a
-        class="pagination__link"
-        href="#"
-        :class="{
+      }">
+        <a class="pagination__link" href="#" :class="{
           'pagination__link--current': pageNumber === page,
-        }"
-        @click.prevent="paginate(pageNumber)">
-        {{ pageNumber }}
-      </a>
-    </li>
-    <li class="pagination__item">
-      <a class="pagination__link" href="#" aria-label="Следующая страница"
-        :class="{ 'pagination__link--disabled': page === pages }" @click.prevent="pageNext(page)">
-        Вперёд
-      </a>
-    </li>
-  </ul>
+        }" @click.prevent="paginate(pageNumber)">
+          {{ pageNumber }}
+        </a>
+      </li>
+      <li class="pagination__item">
+        <a class="pagination__link" href="#" aria-label="Следующая страница"
+          :class="{ 'pagination__link--disabled': page === pages }" @click.prevent="pageNext(page)">
+          Вперёд
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -79,11 +72,20 @@ export default {
 </script>
 
 <style lang="scss">
+  .pagination__wrapper {
+    margin: 0;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
   .pagination {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0;
+    width: 400px;
 
     &__item {
       &:not(:last-child) {

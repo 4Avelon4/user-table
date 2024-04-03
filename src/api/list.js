@@ -10,5 +10,5 @@ export function listRequestPagination(page, perPage) {
 }
 
 export function userRequest(id) {
-  return axios.get(`${API_BASE_URL}/api/?id.value=${id}`);
+  return axios.get(`${API_BASE_URL}/api/?id=${id}`);
 }

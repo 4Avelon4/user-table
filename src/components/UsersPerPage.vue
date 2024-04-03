@@ -32,3 +32,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.form__block {
+  margin-bottom: 15px;
+}
+</style>

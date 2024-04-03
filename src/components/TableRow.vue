@@ -1,11 +1,11 @@
 <template>
-  <tr @click="goToUserPage">
-    <td class="table-user__row">{{ fio }}</td>
-    <td class="table-user__row">{{ user.login.username }}</td>
-    <td class="table-user__row">{{ user.dob.age }}</td>
-    <td class="table-user__row">{{ user.location.country }}</td>
-    <td class="table-user__row">{{ user.location.city }}</td>
-    <td class="table-user__row">{{ user.registered.age }}</td>
+  <tr @click="goToUserPage" class="table-user__row">
+    <td class="table-user__cell">{{ fio }}</td>
+    <td class="table-user__cell">{{ user.login.username }}</td>
+    <td class="table-user__cell">{{ user.dob.age }}</td>
+    <td class="table-user__cell">{{ user.location.country }}</td>
+    <td class="table-user__cell">{{ user.location.city }}</td>
+    <td class="table-user__cell">{{ user.registered.age }}</td>
   </tr>
 </template>
 
@@ -27,6 +27,14 @@ export default {
 
 <style lang="scss">
 .table-user__row {
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .075);
+  }
+}
+
+.table-user__cell {
   padding: 10px;
   font-size: 17px;
   font-weight: 400;

@@ -62,6 +62,13 @@ export default {
 </script>
 
 <style lang="scss">
+.user {
+  &-top, &-title, &-descr {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+}
+
 .user-location:not(:last-child) {
   margin-right: 20px;
 }
