@@ -34,6 +34,7 @@ export default {
   data() {
     return {
       userData: {},
+      userDataFailed: false,
     };
   },
   methods: {
@@ -42,21 +43,31 @@ export default {
     loadUsersInfo() {
       this.userLoad(this.$route.params.id);
     },
+    userDataFailedChecked(flag) {
+      this.userDataFailed = flag;
+    },
   },
 
   computed: {
-    ...mapGetters(['userInfo']),
+    ...mapGetters(['userInfo', 'userInfoReload']),
 
     user() {
-      return this.userInfo[0];
+      try {
+        if (!this.userDataFailed) {
+          return { ...this.userInfo(this.$route.params.id) };
+        }
+
+        return this.userInfoReload[0];
+      } catch {
+        this.loadUsersInfo();
+        this.userDataFailedChecked(true);
+        return this.userInfoReload[0];
+      }
     },
 
     fio() {
       return `${this.user.name.title} ${this.user.name.first} ${this.user.name.last}`;
     },
-  },
-  created() {
-    this.loadUsersInfo();
   },
 };
 </script>

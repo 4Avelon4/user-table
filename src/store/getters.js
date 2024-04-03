@@ -2,7 +2,8 @@ export default {
   usersList(state) {
     return state.userListData;
   },
-  userInfo(state) {
+  userInfoReload(state) {
     return state.userData;
   },
+  userInfo: (state) => (id) => state.userListData.find((item) => item.itemId === id),
 };
