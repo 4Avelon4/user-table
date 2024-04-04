@@ -3,12 +3,12 @@
     <caption class="table-title">Список пользователей</caption>
     <thead class="table-user__header">
       <tr class="table-user__header-row">
-        <th class="table-user__column" data-column="fio">ФИО пользователя</th>
-        <th class="table-user__column" data-column="login">Логин</th>
-        <th class="table-user__column" data-column="birthday">Возраст</th>
-        <th class="table-user__column" data-column="country">Страна</th>
-        <th class="table-user__column" data-column="city">Город</th>
-        <th class="table-user__column" data-column="registerAge">Срок регистрации</th>
+        <th class="table-user__column">ФИО пользователя</th>
+        <th class="table-user__column">Логин</th>
+        <th class="table-user__column">Возраст</th>
+        <th class="table-user__column">Страна</th>
+        <th class="table-user__column">Город</th>
+        <th class="table-user__column">Срок регистрации</th>
       </tr>
     </thead>
     <TableRow v-for="user in users" :key="user.itemId" :user="user" />
