@@ -12,6 +12,12 @@ export default {
 
       const userListId = response.data.results.map((item) => ({
         ...item,
+        fio: `${item.name.title} ${item.name.first} ${item.name.last}`,
+        login: item.login.username,
+        userAge: item.dob.age,
+        registeredAge: item.registered.age,
+        country: item.location.country,
+        city: item.location.city,
         itemId: nanoid(),
       }));
 

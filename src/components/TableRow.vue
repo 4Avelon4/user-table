@@ -1,11 +1,11 @@
 <template>
   <tr @click="goToUserPage" class="table-user__row">
     <td class="table-user__cell">{{ fio }}</td>
-    <td class="table-user__cell">{{ user.login.username }}</td>
-    <td class="table-user__cell">{{ user.dob.age }}</td>
+    <td class="table-user__cell">{{ user.login }}</td>
+    <td class="table-user__cell">{{ user.userAge }}</td>
     <td class="table-user__cell">{{ user.location.country }}</td>
     <td class="table-user__cell">{{ user.location.city }}</td>
-    <td class="table-user__cell">{{ user.registered.age }}</td>
+    <td class="table-user__cell">{{ user.registeredAge }}</td>
   </tr>
 </template>
 

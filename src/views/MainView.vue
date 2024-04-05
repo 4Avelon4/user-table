@@ -9,7 +9,7 @@
 
         <BasePagination :page.sync="page" :count="countUsers" :per-page="usersPerPage" />
 
-        <TablePage :users="users" />
+        <TablePage :users="users" :sorted-column.sync="column" :sorted-column-dir.sync="columnDir" />
 
         <BasePagination :page.sync="page" :count="countUsers" :per-page="usersPerPage" />
       </div>
@@ -30,6 +30,9 @@ export default {
 
       page: 1,
       usersPerPage: 10,
+
+      column: 'fio',
+      columnDir: true,
     };
   },
   computed: {
@@ -51,9 +54,11 @@ export default {
         return [];
       }
 
+      const usersCopy = this.getSortUsers(this.column, this.columnDir);
+
       const offset = (this.page - 1) * this.usersPerPage;
 
-      return this.usersArray.slice(offset, offset + this.usersPerPage);
+      return usersCopy.slice(offset, offset + this.usersPerPage);
     },
   },
   methods: {
@@ -67,6 +72,19 @@ export default {
     //   //   perPage: this.usersPerPage,
     //   // });
     // },
+    getSortUsers(prop, dir) {
+      const usersCopy = [...this.usersArray];
+
+      return usersCopy.sort((userA, userB) => {
+        const dirIf = dir === false ? userA[prop] < userB[prop] : userA[prop] > userB[prop];
+
+        if (!dirIf) {
+          return -1;
+        }
+
+        return 1;
+      });
+    },
   },
   watch: {
     usersPerPage: {
@@ -82,6 +100,12 @@ export default {
     //   },
     //   // immediate: true,
     // },
+    column() {
+      this.getSortUsers(this.column, this.columnDir);
+    },
+    columnDir() {
+      this.getSortUsers(this.column, this.columnDir);
+    },
   },
   created() {
     this.loadUsers(100);
