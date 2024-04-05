@@ -108,7 +108,9 @@ export default {
     },
   },
   created() {
-    if (this.$store.state.userListData) {
+    const isStoreUserList = Array.isArray(this.$store.state.userListData) && this.$store.state.userListData.length > 0;
+
+    if (isStoreUserList) {
       return;
     }
 
