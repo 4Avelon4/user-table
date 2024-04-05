@@ -108,6 +108,10 @@ export default {
     },
   },
   created() {
+    if (this.$store.state.userListData) {
+      return;
+    }
+
     this.loadUsers(100);
   },
   components: {
