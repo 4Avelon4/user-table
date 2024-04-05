@@ -50,7 +50,7 @@ export default {
     },
     pageHideClass(pageNumber) {
       const value = (pageNumber > this.page + 1 || pageNumber < this.page - 1)
-        && pageNumber > 1 && pageNumber < this.perPage && this.pages > 5;
+        && pageNumber > 1 && pageNumber < this.pages && this.pages > 5;
 
       return value;
     },
