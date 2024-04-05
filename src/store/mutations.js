@@ -14,9 +14,9 @@ export default {
     state.userLoadingFailed = flag;
   },
   userListLoadingChecking(state, flag) {
-    state.userLoading = flag;
+    state.userListLoading = flag;
   },
   userListLoadingFailedChecking(state, flag) {
-    state.userLoadingFailed = flag;
+    state.userListLoadingFailed = flag;
   },
 };

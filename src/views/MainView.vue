@@ -1,7 +1,7 @@
 <template>
   <div v-if="this.$store.state.userListLoading">Данные загружаются...</div>
   <div v-else-if="this.$store.state.userListLoadingFailed">Произошла ошибка</div>
-  <main v-else-if="users">
+  <main v-else>
     <h1 class="title">Таблица пользователей</h1>
     <section class="section-user">
       <div class="user-container container">

@@ -11,11 +11,11 @@ export default new Vuex.Store({
     userListData: {},
     userData: {},
 
-    userLoading: false,
-    userLoadingFailed: false,
-
     userListLoading: false,
     userListLoadingFailed: false,
+
+    userLoading: false,
+    userLoadingFailed: false,
   },
   getters,
   mutations,
